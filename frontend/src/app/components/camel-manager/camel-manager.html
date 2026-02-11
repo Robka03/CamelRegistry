@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Teve Nyilvántartó</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card p-3 shadow-sm">
+        <h4>{{ isEditMode ? 'Teve szerkesztése' : 'Új teve felvétele' }}</h4>
+        <form [formGroup]="camelForm" (ngSubmit)="onSubmit()">
+          
+          <div class="mb-3">
+            <label class="form-label">Név *</label>
+            <input type="text" formControlName="name" class="form-control" 
+                   [class.is-invalid]="camelForm.get('name')?.invalid && camelForm.get('name')?.touched">
+            <div class="invalid-feedback">A név kötelező és legalább 2 karakter.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Púpok száma *</label>
+            <input type="number" formControlName="humpCount" class="form-control"
+                   [class.is-invalid]="camelForm.get('humpCount')?.invalid && camelForm.get('humpCount')?.touched">
+            <div class="invalid-feedback">Csak 1 vagy 2 púp lehet!</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Szín</label>
+            <input type="text" formControlName="color" class="form-control">
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="camelForm.invalid">
+              {{ isEditMode ? 'Mentés' : 'Létrehozás' }}
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm()">Mégse</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <table class="table table-hover border">
+        <thead class="table-light">
+          <tr>
+            <th>Név</th>
+            <th>Púpok</th>
+            <th>Szín</th>
+            <th>Műveletek</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let camel of camels">
+            <td>{{ camel.name }}</td>
+            <td>{{ camel.humpCount }}</td>
+            <td>{{ camel.color || '-' }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-warning me-2" (click)="editCamel(camel)">Szerkesztés</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteCamel(camel.id!)">Törlés</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -7,11 +7,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=camels.db"));
 
+builder.Services.AddCors(opt => {
+    opt.AddPolicy("AllowAngular", policy => {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
 
+
+var app = builder.Build();
+app.UseCors("AllowAngular");
 // DB auto-create
 using (var scope = app.Services.CreateScope())
 {
