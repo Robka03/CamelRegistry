@@ -58,7 +58,6 @@ h2 {
     color: #444;
 }
 
-/* Táblázat fejléc */
 thead th {
     font-weight: 800 !important;
     text-transform: uppercase;
@@ -66,7 +65,6 @@ thead th {
     letter-spacing: 1px;
     border-bottom: 2px solid #000 !important; 
     padding-bottom: 1rem !important;
-    background-color: transparent !important;
 }
 
 tbody td {
