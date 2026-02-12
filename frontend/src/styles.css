@@ -27,6 +27,7 @@ body {
 }
 
 
+
 h2 {
     font-weight: 800 !important;
     text-transform: uppercase;
@@ -49,6 +50,7 @@ h2 {
     box-shadow: none !important;
     border-bottom-color: #000 !important; 
 }
+
 
 .form-label {
     text-transform: uppercase;

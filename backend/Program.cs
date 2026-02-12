@@ -19,7 +19,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-
 var app = builder.Build();
 app.UseCors("AllowAngular");
 // DB auto-create

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+
 import { Observable } from 'rxjs';
 
 
@@ -17,8 +18,8 @@ export interface Camel {
 @Injectable({ providedIn: 'root' })
 export class CamelService {
   private env = environment as { apiUrl: string }; 
-  private apiUrl = 'http://localhost:5122/api/camels';
-
+  private apiUrl = `${this.env.apiUrl}/camels`;
+  
   constructor(private http: HttpClient) {}
 
   getCamels(): Observable<Camel[]> {
