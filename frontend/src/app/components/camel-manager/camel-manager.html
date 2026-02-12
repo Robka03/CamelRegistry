@@ -13,14 +13,14 @@
             <label class="form-label">Név *</label>
             <input type="text" formControlName="name" class="form-control" 
                    [class.is-invalid]="camelForm.get('name')?.invalid && camelForm.get('name')?.touched">
-            <div class="invalid-feedback">A név kötelező és legalább 2 karakter.</div>
+            <div class="invalid-feedback">A név kötelező, adjon meg legalább 2 karaktert.</div>
           </div>
 
           <div class="mb-3">
             <label class="form-label">Púpok száma *</label>
             <input type="number" formControlName="humpCount" class="form-control"
                    [class.is-invalid]="camelForm.get('humpCount')?.invalid && camelForm.get('humpCount')?.touched">
-            <div class="invalid-feedback">Csak 1 vagy 2 púp lehet!</div>
+            <div class="invalid-feedback">A púpok száma csak 1 vagy 2 lehet!</div>
           </div>
 
           <div class="mb-3">
@@ -28,7 +28,7 @@
             <input type="text" formControlName="color" class="form-control">
           </div>
 
-          <div class="d-flex gap-2">
+          <div class="d-flex justify-content-center gap-2">
             <button type="submit" class="btn btn-primary" [disabled]="camelForm.invalid">
               {{ isEditMode ? 'Mentés' : 'Létrehozás' }}
             </button>
