@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CamelManager } from './camel-manager';
+import { CamelManagerComponent } from './camel-manager';
 
-describe('CamelManager', () => {
-  let component: CamelManager;
-  let fixture: ComponentFixture<CamelManager>;
+describe('CamelManagerComponent', () => {
+  let component: CamelManagerComponent;
+  let fixture: ComponentFixture<CamelManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CamelManager]
+      imports: [CamelManagerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CamelManager);
+    fixture = TestBed.createComponent(CamelManagerComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -20,4 +20,28 @@ describe('CamelManager', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  it('a form legyen érvénytelen, ha a név üres', () => {
+    component.camelForm.controls['name'].setValue('');
+    expect(component.camelForm.controls['name'].valid).toBeFalsy();
+  });
+
+  it('a névnek legalább 2 karakternek kell lennie', () => {
+    const nameControl = component.camelForm.controls['name'];
+    nameControl.setValue('A');
+    expect(nameControl.errors?.['minlength']).toBeTruthy();
+  });
+
+
+  it('a púpok száma csak 1 vagy 2 lehet', () => {
+    const humpControl = component.camelForm.controls['humpCount'];
+    humpControl.setValue(3); 
+    expect(humpControl.valid).toBeFalsy();
+    
+    humpControl.setValue(2); 
+    expect(humpControl.valid).toBeTruthy();
+  });
+
+
 });
+

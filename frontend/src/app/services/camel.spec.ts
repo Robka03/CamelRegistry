@@ -1,16 +1,24 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { CamelService } from './camel'; 
 
-import { Camel } from './camel';
-
-describe('Camel', () => {
-  let service: Camel;
+describe('CamelService', () => {
+  let service: CamelService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(Camel);
+    TestBed.configureTestingModule({
+      providers: [
+        CamelService,
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
+    });
+    
+    service = TestBed.inject(CamelService); 
   });
 
-  it('should be created', () => {
+  it('legyen létrehozva a szerviz', () => {
     expect(service).toBeTruthy();
   });
 });
